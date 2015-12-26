@@ -1,6 +1,6 @@
 # Catalog of current .dotfiles
 
-## Things I need to clean-up / do
+## Things I need to clean-up
 ```
 ├── .vim
 ├── .bash_profile
@@ -10,6 +10,7 @@
 ├── .profile
 ├── .vimrc
 ```
+- Consolidate `.bash_profile` in to `.profile`
 - Break apart `.profile` in to smaller components
   - `.aliases`
   - `.exports`
