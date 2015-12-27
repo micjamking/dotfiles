@@ -4,7 +4,7 @@
 # thus it being first in line.
 # ------------------------------------------- #
 
-for file in ~/.{env,exports,aliases,projects,functions}; do
+for file in ~/.{env,bash_prompt,exports,aliases,projects,functions}; do
       [ -r "$file" ] && source "$file"
 done
 unset file
