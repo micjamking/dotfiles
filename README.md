@@ -9,7 +9,7 @@ My mac developer machine setup (shell, git, et al. config files)
 - [dotfiles.github.io](http://dotfiles.github.io/)
 - [Awesome dotfiles](https://github.com/webpro/awesome-dotfiles)
 
-### To-Do: Setup & Installation
+**To-Do: Setup & Installation**
 ```
 ├── brew.sh       # Install command-line tools using Homebrew
 ├── brew-cask.sh  # Install native apps
