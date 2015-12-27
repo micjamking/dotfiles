@@ -1,0 +1,11 @@
+[user]
+	name = Mike King
+	email = yo@mikeking.io
+[core]
+    editor = vim
+[push]
+    default = simple
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
