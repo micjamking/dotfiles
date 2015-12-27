@@ -1,6 +1,12 @@
 # ---------------------------------------------- #
 # Functions
 # ---------------------------------------------- #
+function makeExecutable() {
+
+  chmod u+x "$@"
+
+}
+
 function addKeyToRemote() {
   
   cat ~/.ssh/id_rsa.pub | ssh "$@" "cat >> .ssh/authorized_keys"
