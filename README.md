@@ -9,8 +9,7 @@ My mac developer machine setup (shell, git, et al. config files)
 - [Paul Irish's .dotfiles](https://github.com/paulirish/dotfiles)
 - [Mathias Bynens .dotfiles](https://github.com/mathiasbynens/dotfiles)
 - [dotfiles.github.io](http://dotfiles.github.io/)
-- [Awesome dotfiles](https://github.com/webpro/awesome-dotfiles)# Catalog of current .dotfiles
-
+- [Awesome dotfiles](https://github.com/webpro/awesome-dotfiles)
 
 ### To-Do: Setup & Installation
 ```
