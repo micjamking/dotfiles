@@ -66,6 +66,8 @@ alias serato_clean="rm /Users/Zion/Library/Preferences/com.serato.scratchlive.pl
 
 # General
 alias show="ls -al"
+alias show_tree="tree -aL 4 -I '.git|node_modules|.Trash|.cache'"
+alias print_tree="show_tree > ~/Desktop/${FILENAME#.}.`date +%Y%m%d`.txt && open ~/Desktop/${FILENAME#.}.`date +%Y%m%d`.txt"
 alias npm_la="npm ls --depth 0 -g"
 alias clean="rm -rf ..?* .[!.]* *"
 alias git_clean="git clean  -d  -fx ''"

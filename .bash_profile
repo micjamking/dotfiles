@@ -4,7 +4,16 @@
 # thus it being first in line.
 # ------------------------------------------- #
 
-for file in ~/.{env,bash/.prompt,bash/.exports,bash/.aliases,bash/.functions,.projects}; do
-      [ -r "$file" ] && source "$file"
+for file in ~/.{env,bash/.[^.]*,.projects}; do
+
+  # filename=$(tput setaf 81)$(basename $file)$(tput sgr0)
+      
+  [ -r "$file" ] && source "$file"
+  
+  # echo -e "$filename loaded.";
+
 done
+
+# echo "$(tput setaf 148)Done!$(tput sgr0)"
+
 unset file
