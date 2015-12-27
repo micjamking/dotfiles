@@ -1,0 +1,33 @@
+# ---------------------------------------------- #
+# Functions
+# ---------------------------------------------- #
+function addKeyToRemote() {
+  
+  cat ~/.ssh/id_rsa.pub | ssh "$@" "cat >> .ssh/authorized_keys"
+
+}
+
+function symlinkToCloud() {
+  
+  path="$1"
+
+  file="$(basename $path)"
+
+  cloud_directory="${2:-$HOME/Google Drive/}"
+
+  cloud_file="$cloud_directory$file"
+  
+  echo -e "Moving $file to $cloud_directory...\n";
+  
+  if sudo mv "$path" "$cloud_directory" ; then 
+  
+    echo -e "Symlinking $cloud_file → $path...\n";  
+    
+    if ln -s "$cloud_file" "$path" ; then
+
+      echo "Done!";
+    
+    fi
+
+  fi
+}
