@@ -1,6 +1,17 @@
 # ---------------------------------------------- #
 # Functions
 # ---------------------------------------------- #
+
+function relink(){
+
+  source_file="$1"
+
+  target_file="$2"
+
+  ln -sFi "$source_file" "$target_file"
+
+}
+
 function makeExecutable() {
 
   chmod u+x "$@"

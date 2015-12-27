@@ -35,11 +35,11 @@ alias pgstop='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/serve
 # ---------------------------------------------- #
 
 # Bash Profile
-alias edit_aliases='vim ~/.aliases'
-alias edit_exports='vim ~/.exports'
-alias edit_functions='vim ~/.functions'
+alias edit_aliases='vim ~/.bash/.aliases'
+alias edit_exports='vim ~/.bash/.exports'
+alias edit_functions='vim ~/.bash/.functions'
+alias edit_projects='vim ~/.bash/.projects'
 alias edit_profile='vim ~/.bash_profile'
-alias edit_projects='vim ~/.projects'
 alias reload_profile='source ~/.bash_profile'
 
 # Watch Errors
