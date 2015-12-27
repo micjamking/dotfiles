@@ -2,14 +2,6 @@
 # Exports / Sources
 # ---------------------------------------------- #
 
-# Node / NVM
-export NVM_DIR="/Users/Zion/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Ruby / RVM
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Paths
 export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
@@ -31,3 +23,14 @@ source ~/.gitbash/git-completion.bash
 
 # WordPress auto-completion
 source $HOME/.wp-cli/wp-completion.bash
+
+# Node / NVM
+export NVM_DIR="/Users/Zion/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Ruby / RVM
+export PATH="$PATH:$HOME/.rvm/bin"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# Travis
+[ -f /Users/Zion/.travis/travis.sh ] && source /Users/Zion/.travis/travis.sh
