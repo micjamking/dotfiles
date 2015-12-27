@@ -1,0 +1,10 @@
+{
+  "name": "bin > node scripts",
+  "version": "1.0.0",
+  "description": "bin > node scripts",
+  "author": "Mike King",
+  "private": true,
+  "dependencies": {
+    "color2xterm": "^1.0.0"
+  }
+}

@@ -1,4 +1,4 @@
-# dotfiles (WIP)
+# Mike's dotfiles (WIP)
 My mac developer machine setup (shell, git, et al. config files)
 
 ## References:
