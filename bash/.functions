@@ -42,7 +42,7 @@ function symlink(){
 
   if [ -h "$target" ] ; then
       
-    ln -sFi "$source" "$target";
+    sudo ln -sFi "$source" "$target";
 
   elif [ -e "$target" ] && [ ! -d "$target" ] ; then
 
@@ -54,9 +54,9 @@ function symlink(){
 
     if [[ "$REPLY" =~ ^[Yy]$ ]] ; then
       
-      rm -rf "$target"
+      sudo rm -rf "$target"
 
-      ln -sF "$source" "$target";
+      sudo ln -sF "$source" "$target";
 
     else
 
@@ -66,7 +66,7 @@ function symlink(){
     
   else
  
-    ln -s "$source" "$target";
+    sudo ln -s "$source" "$target";
 
   fi
 
