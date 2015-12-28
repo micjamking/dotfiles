@@ -40,41 +40,37 @@ function symlink(){
 
   echo -e "Symlinking $source → $target...\n";
 
-  if [ -e "$target" ] && [ ! -d "$target" ] ; then
-
-    if [ -h "$target" ] ; then
+  if [ -h "$target" ] ; then
       
-      ln -sFi "$source" "$target";
+    ln -sFi "$source" "$target";
+
+  elif [ -e "$target" ] && [ ! -d "$target" ] ; then
+
+    echo "'$targetFile' already exists, do you want to overwrite it? (y/n)";
+      
+    read -n 1;
+
+    echo -e "\n";
+
+    if [[ "$REPLY" =~ ^[Yy]$ ]] ; then
+      
+      rm -rf "$target"
+
+      ln -sF "$source" "$target";
 
     else
-
-      echo "'$targetFile' already exists, do you want to overwrite it? (y/n)";
-      
-      read -n 1;
-
-      echo -e "\n";
-
-      if [ "$REPLY" =~ ^[Yy]$ ] ; then
-      
-        rm -rf "$target"
-
-        ln -sF "$source" "$target";
-
-      else
 
         return 1;
 
       fi
     
-    fi
-
   else
-   
-   ln -s "$source" "$target";
+ 
+    ln -s "$source" "$target";
 
   fi
 
-  echo -e "Symlink succesfully created!\n" && ls -al $( find "$target" -maxdepth 1 -type l -print )
+  [ "$?" != 1 ] && echo -e "Symlink succesfully created!\n" && ls -al $( find "$target" -maxdepth 1 -type l -print )
 
 }
 
