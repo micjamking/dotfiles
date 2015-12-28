@@ -2,21 +2,10 @@
 # Functions
 # ---------------------------------------------- #
 
-function relink(){
-
-  source_file="$1"
-
-  target_file="$2"
-
-  ln -sFi "$source_file" "$target_file"
-
-}
-
-function makeExecutable() {
-
-  chmod u+x "$@"
-
-}
+# -------------------------------------------------------- # 
+# Copy public SSH key to remote server
+# @param {string} $@ - ssh username@hostname to login
+# -------------------------------------------------------- # 
 
 function addKeyToRemote() {
   
@@ -24,11 +13,82 @@ function addKeyToRemote() {
 
 }
 
-function symlinkToCloud() {
-  
-  path="$1"
+# -------------------------------------------------------- # 
+# Make file executable
+# @param {string} $@ - filename/path
+# -------------------------------------------------------- # 
 
-  file="$(basename $path)"
+function makeExecutable() {
+
+  chmod u+x "$@"
+
+}
+
+# -------------------------------------------------------- # 
+# symlink source > target
+# @param {string} source - original file to create link of
+# @param {string} target - target symlink to be created
+# -------------------------------------------------------- # 
+
+function symlink(){
+
+  source="$1"
+
+  target="$2"
+
+  targetFile="$(basename $target)"
+
+  echo -e "Symlinking $source → $target...\n";
+
+  if [ -e "$target" ] && [ ! -d "$target" ] ; then
+
+    if [ -h "$target" ] ; then
+      
+      ln -sFi "$source" "$target";
+
+    else
+
+      echo "'$targetFile' already exists, do you want to overwrite it? (y/n)";
+      
+      read -n 1;
+
+      echo -e "\n";
+
+      if [ "$REPLY" =~ ^[Yy]$ ] ; then
+      
+        rm -rf "$target"
+
+        ln -sF "$source" "$target";
+
+      else
+
+        return 1;
+
+      fi
+    
+    fi
+
+  else
+   
+   ln -s "$source" "$target";
+
+  fi
+
+  echo -e "Symlink succesfully created!\n" && ls -al $( find "$target" -maxdepth 1 -type l -print )
+
+}
+
+# -------------------------------------------------------- # 
+# sync source > target on cloud
+# @param {string} source - original file to move to cloud
+# @param {string} target - target cloud directory location
+# -------------------------------------------------------- # 
+
+function syncToCloud() {
+  
+  source="$1"
+
+  file="$(basename $source)"
 
   cloud_directory="${2:-$HOME/Google Drive/}"
 
@@ -36,15 +96,10 @@ function symlinkToCloud() {
   
   echo -e "Moving $file to $cloud_directory...\n";
   
-  if sudo mv "$path" "$cloud_directory" ; then 
+  if sudo mv "$source" "$cloud_directory" ; then 
   
-    echo -e "Symlinking $cloud_file → $path...\n";  
-    
-    if ln -s "$cloud_file" "$path" ; then
-
-      echo "Done!";
-    
-    fi
+    symlink "$cloud_file" "$source"
 
   fi
 }
+
