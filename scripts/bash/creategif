@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Variables
+input="$1";
+output="$2";
+scale="-vf scale=800:-1";
+
+# See https://www.ffmpeg.org/ffmpeg.html for configuration options
+#ffmpeg -i "$input" -r 24 -f gif - | gifsicle --optimize=3 --delay=3 > "$output"
+
+ffmpeg -i "$input" -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -layers Optimize -loop 0 - "$output"
