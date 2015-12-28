@@ -8,6 +8,9 @@ alias apstop='sudo apachectl -k stop'
 alias aprestart='sudo apachectl restart'
 alias aperror='sudo vim /var/log/apache2/error_log'
 
+# PHP
+alias edit_php='sudo vim /private/etc/php.ini'
+
 # Virtual Hosts
 alias edit_hosts='sudo vim /etc/hosts'
 alias edit_vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
@@ -29,6 +32,9 @@ alias mysqlstop='sudo mysql.server stop'
 # PostGRES
 alias pgstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pgstop='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop'
+
+# MongoDB
+alias mongoconfig='sudo vim /usr/local/etc/mongod.conf'
 
 # ---------------------------------------------- #
 # General Shortcuts
