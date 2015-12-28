@@ -60,12 +60,7 @@ alias calc='bc -l'
 
 # Sass
 # alias sassify='node-sass -w --output-style expanded --source-map true styles/*.scss --output styles/'
-
 alias sassify='node-sass -w --output-style expanded --source-map true styles/ --output styles/'
-
-
-# WordPress
-alias wp_permissions='sudo chown -R :_www wordpress && sudo chmod -R g+w wordpress'
 
 # Serato
 alias serato_clean="rm /Users/Zion/Library/Preferences/com.serato.scratchlive.plist && /Users/Zion/Library/Preferences/com.serato.dj.plist"
@@ -79,4 +74,3 @@ alias npm_la="npm ls --depth 0 -g"
 alias clean="rm -rf ..?* .[!.]* *"
 alias git_clean="git clean  -d  -fx ''"
 alias git_clean_show="git clean -dfxn"
-
