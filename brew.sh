@@ -43,6 +43,7 @@ brew install imagemagick --with-webp
 brew install mongodb
 brew install postgresql
 brew install mysql
+brew install nvm
 brew install tree
 
 # Remove outdated versions from the cellar.
