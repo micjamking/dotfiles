@@ -39,6 +39,7 @@ brew install homebrew/php/php55 --with-gmp
 # Install other useful binaries.
 brew install git
 brew install ffmpeg
+brew install heroku-toolbelt
 brew install imagemagick --with-webp
 brew install mongodb
 brew install postgresql
