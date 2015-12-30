@@ -19,7 +19,7 @@ function print_result(){
 
   local failure="$3"
 
-	[ $result -eq 0 ] \
+  [ $result -eq 0 ] \
 	
   && echo -e "$(tput setaf 148)$success$(tput sgr0)" \
 	
@@ -76,15 +76,18 @@ function setup_bash() {
   
   sudo echo $BASHPATH >> /etc/shells
   
-  chsh -s $BASHPATH # will set for current user only.
+  # Set for current user
+  chsh -s $BASHPATH
   
-  echo $BASH_VERSION # should be 4.x not the old 3.2.X
+  # Should display 4.x instead of 3.2.X
+  echo $BASH_VERSION
   
   echo "Bash it up!\n";
 }
 
 # Run setup
 
+# Epic intro...
 echo "   _____     __         ______     __  __     ______        ______     ______     ______ "
 echo " /\  __ \   /\ \       /\  __ \   /\ \_\ \   /\  __ \      /\  == \   /\  == \   /\  __ \ "
 echo " \ \  __ \  \ \ \____  \ \ \/\ \  \ \  __ \  \ \  __ \     \ \  __<   \ \  __<   \ \ \/\ \ "
@@ -93,31 +96,34 @@ echo "   \/_/\/_/   \/_____/   \/_____/   \/_/\/_/   \/_/\/_/      \/_____/   \/
 
 echo -e "\n";
 
-echo -e "Welcome to @micjamking's _epic_ computer setup. Let's #GSD!\n";
+echo -e "Welcome to $(tput setaf 185)@micjamking's$(tput sgr0) _epic_ computer setup. Let's #GSD!\n";
 
-echo -e "First things first, we need to install Xcode command line tools...\n";
+# The "lord's work"...
+echo -e "First things first, we need to install $(tput setaf 79)Xcode Command Line Tools$(tput sgr0)...\n";
 
-install_xcode_cli_tools
+install_xcode_cli_tools;
 
-echo -e "Brewing all the things...\n";
+echo -e "Easy breasy! Next up...\n";
 
-source install/brew.sh
-source install/brew-cask.sh
+echo -e "$(tput setaf 185)Brewing$(tput sgr0) all the things...\n";
 
-echo -e "Entering the Node...\n";
+source install/brew.sh;
+source install/brew-cask.sh;
 
-source install/node.sh
+echo -e "Entering the $(tput setaf 149)Node$(tput sgr0)...\n";
 
-echo -e "Adding that 'new new', bash 4...";
+source install/node.sh;
 
-setup_bash();
+echo -e "Add that 'new new', $(tput setaf 204)Bash 4.x$(tput sgr0)...";
 
-echo -e "Alright, now its time to get to bidness: OS X...";
+setup_bash;
 
-source install/osx.sh
+echo -e "...those $(tput setaf 79)OS X preferences$(tput sgr0) though? 'got you!";
 
-echo -e "...and now we just gotta symlink everything together";
+source install/osx.sh;
+
+echo -e "$(tput setaf 209)♪ ♪ sYmLiNk It AlL uP! ♪ ♪$(tput sgr0) **sing it like The Jeffersons: $(tput setaf 146)https://www.youtube.com/watch?v=FHDwRECFL8M$(tput sgr0)**";
 
 source install/symlink.sh;
 
-echo -e "...aaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnd were done! Now go, on to more important things...";
+echo -e "$(tput setaf 148)...aaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnd were done!$(tput sgr0) Now go, on to more important things...";
