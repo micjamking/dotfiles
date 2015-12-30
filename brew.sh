@@ -46,6 +46,7 @@ brew install postgresql
 brew install mysql
 brew install nvm
 brew install tree
+brew install homebrew/php/wp-cli
 
 # Remove outdated versions from the cellar.
 brew cleanup

@@ -76,16 +76,16 @@ echo "   \/_/\/_/   \/_____/   \/_____/   \/_/\/_/   \/_/\/_/      \/_____/   \/
 
 echo -e "\n";
 
-echo -e "Welcome to @micjamking's computer setup. Let's #GSD!\n";
+echo -e "Welcome to @micjamking's _epic_ computer setup. Let's #GSD!\n";
 
-echo -e "First things first, we need to install Xcode command line tools...\n"
+echo -e "First things first, we need to install Xcode command line tools...\n";
 
 install_xcode_cli_tools
 
-echo -e "Brewing all the things...\n"
+echo -e "Brewing all the things...\n";
 
 source install/brew.sh
 
-echo -e "Installing the only real programming language (node)...\n"
+echo -e "Entering the Node...\n";
 
 source install/node.sh
