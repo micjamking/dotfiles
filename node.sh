@@ -21,3 +21,5 @@ npm install -g node-sass
 npm install -g npm-check-updates
 npm install -g postcss
 npm install -g yo
+
+echo -e "NPM package installation complete. Exiting the Node...\n";
