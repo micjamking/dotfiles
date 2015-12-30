@@ -19,11 +19,7 @@ function print_result(){
 
   local failure="$3"
 
-  [ $result -eq 0 ] \
-	
-  && echo -e "$(tput setaf 148)$success$(tput sgr0)" \
-	
-  || echo -e "$(tput setaf 197)$failure$(tput sgr0)"
+  [ $result -eq 0 ] && echo -e "$(tput setaf 148)$success$(tput sgr0)" || echo -e "$(tput setaf 197)$failure$(tput sgr0)"
 }
 
 # ------------------------------------------------------- #
@@ -87,43 +83,47 @@ function setup_bash() {
 
 # Run setup
 
+echo "";
+
 # Epic intro...
-echo "   _____     __         ______     __  __     ______        ______     ______     ______ "
-echo " /\  __ \   /\ \       /\  __ \   /\ \_\ \   /\  __ \      /\  == \   /\  == \   /\  __ \ "
-echo " \ \  __ \  \ \ \____  \ \ \/\ \  \ \  __ \  \ \  __ \     \ \  __<   \ \  __<   \ \ \/\ \ "
-echo "  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_\ \_\     \ \_____\  \ \_\ \_\  \ \_____\ "
-echo "   \/_/\/_/   \/_____/   \/_____/   \/_/\/_/   \/_/\/_/      \/_____/   \/_/ /_/   \/_____/ "
+echo "$(tput setaf 79)   _____     __         ______     __  __     ______        ______     ______     ______ $(tput sgr0)"
+echo "$(tput setaf 227) /\  __ \   /\ \       /\  __ \   /\ \_\ \   /\  __ \      /\  == \   /\  == \   /\  __ \ $(tput sgr0)"
+echo "$(tput setaf 209) \ \  __ \  \ \ \____  \ \ \/\ \  \ \  __ \  \ \  __ \     \ \  __<   \ \  __<   \ \ \/\ \ $(tput sgr0)"
+echo "$(tput setaf 204)  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_\ \_\     \ \_____\  \ \_\ \_\  \ \_____\ $(tput sgr0)"
+echo "$(tput setaf 162)   \/_/\/_/   \/_____/   \/_____/   \/_/\/_/   \/_/\/_/      \/_____/   \/_/ /_/   \/_____/ $(tput sgr0)"
 
-echo -e "\n";
+echo "\n";
 
-echo -e "Welcome to $(tput setaf 185)@micjamking's$(tput sgr0) _epic_ computer setup. Let's #GSD!\n";
+echo "Welcome to $(tput setaf 79)@micjamking's$(tput sgr0) _EPIC_ computer setup. Let's $(tput setaf 204)#GSD!$(tput sgr0)\n";
 
 # The "lord's work"...
-echo -e "First things first, we need to install $(tput setaf 79)Xcode Command Line Tools$(tput sgr0)...\n";
+echo "First things first, we need to install $(tput setaf 79)Xcode Command Line Tools$(tput sgr0)...\n";
 
 install_xcode_cli_tools;
 
-echo -e "Easy breasy! Next up...\n";
+echo "Easy breasy! Next up...\n";
 
-echo -e "$(tput setaf 185)Brewing$(tput sgr0) all the things...\n";
+echo "$(tput setaf 227)Brewing$(tput sgr0) all the things...\n";
 
 source install/brew.sh;
 source install/brew-cask.sh;
 
-echo -e "Entering the $(tput setaf 149)Node$(tput sgr0)...\n";
+echo "Entering the $(tput setaf 148)Node$(tput sgr0)...\n";
 
 source install/node.sh;
 
-echo -e "Add that 'new new', $(tput setaf 204)Bash 4.x$(tput sgr0)...";
+echo "'I found you, Miss New Booty', $(tput setaf 162)Bash 4$(tput sgr0)...\n";
 
 setup_bash;
 
-echo -e "...those $(tput setaf 79)OS X preferences$(tput sgr0) though? 'got you!";
+echo "...those $(tput setaf 79)OS X preferences$(tput sgr0) though? 'got you!\n";
 
 source install/osx.sh;
 
-echo -e "$(tput setaf 209)♪ ♪ sYmLiNk It AlL uP! ♪ ♪$(tput sgr0) **sing it like The Jeffersons: $(tput setaf 146)https://www.youtube.com/watch?v=FHDwRECFL8M$(tput sgr0)**";
+echo "$(tput setaf 204)♫♫ sYmLiNk It AlL uP! ♫♫$(tput sgr0) *sing it like The Jeffersons: $(tput setaf 209)https://www.youtube.com/watch?v=FHDwRECFL8M$(tput sgr0)*\n";
 
 source install/symlink.sh;
 
-echo -e "$(tput setaf 148)...aaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnd were done!$(tput sgr0) Now go, on to more important things...";
+echo "...aaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnd were $(tput setaf 148)done!$(tput sgr0)\n";
+
+echo "Now GO! On to more important things...\n";
