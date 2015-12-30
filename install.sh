@@ -68,17 +68,17 @@ function install_xcode_cli_tools() {
 function setup_bash() {
   
   # Update to Bash 4.x (installed by Homebrew)
-  BASHPATH=$(brew --prefix)/bin/bash
+  BASHPATH="$(brew --prefix)/bin/bash"
   
-  sudo echo $BASHPATH >> /etc/shells
+  # Add brew's bash to list of shells
+  if [ $(cat /private/etc/shells | grep $BASHPATH | wc -l) -eq 0 ]; then
+    sudo bash -c 'echo $BASHPATH >> /private/etc/shells'
+  fi
   
   # Set for current user
   chsh -s $BASHPATH
   
-  # Should display 4.x instead of 3.2.X
-  echo $BASH_VERSION
-  
-  echo "Bash it up!\n";
+  echo "\nBash it up! Remember to quit terminal and relaunch after everythings all pau.\n";
 }
 
 # Run setup
@@ -96,34 +96,44 @@ echo "\n";
 
 echo "Welcome to $(tput setaf 79)@micjamking's$(tput sgr0) _EPIC_ computer setup. Let's $(tput setaf 204)#GSD!$(tput sgr0)\n";
 
+echo "Let's get your password out of the way for now, even though some programs will ask for it again :/ \n";
+
 # The "lord's work"...
-echo "First things first, we need to install $(tput setaf 79)Xcode Command Line Tools$(tput sgr0)...\n";
+if sudo -v ; then
 
-install_xcode_cli_tools;
+	echo "Now thats out of the way, lets install $(tput setaf 79)Xcode Command Line Tools$(tput sgr0)...\n";
 
-echo "Easy breasy! Next up...\n";
+	install_xcode_cli_tools;
 
-echo "$(tput setaf 227)Brewing$(tput sgr0) all the things...\n";
+	echo "Easy breasy! Next up...\n";
 
-source install/brew.sh;
-source install/brew-cask.sh;
+	echo "$(tput setaf 227)Brewing$(tput sgr0) all the things...\n";
 
-echo "Entering the $(tput setaf 148)Node$(tput sgr0)...\n";
+	source install/brew.sh;
+	source install/brew-cask.sh;
 
-source install/node.sh;
+	echo "\nEntering the $(tput setaf 148)Node$(tput sgr0)...\n";
 
-echo "'I found you, Miss New Booty', $(tput setaf 162)Bash 4$(tput sgr0)...\n";
+	source install/node.sh;
 
-setup_bash;
+	echo "\n'I found you, Miss New Booty', $(tput setaf 162)Bash 4$(tput sgr0)...\n";
 
-echo "...those $(tput setaf 79)OS X preferences$(tput sgr0) though? 'got you!\n";
+	setup_bash;
 
-source install/osx.sh;
+	echo "\n...those $(tput setaf 79)OS X preferences$(tput sgr0) though? 'got you!\n";
 
-echo "$(tput setaf 204)♫♫ sYmLiNk It AlL uP! ♫♫$(tput sgr0) *sing it like The Jeffersons: $(tput setaf 209)https://www.youtube.com/watch?v=FHDwRECFL8M$(tput sgr0)*\n";
+	source install/osx.sh;
 
-source install/symlink.sh;
+	echo "\n$(tput setaf 204)♫♫ sYmLiNk It AlL uP! ♫♫$(tput sgr0) *sing it like The Jeffersons: $(tput setaf 209)https://www.youtube.com/watch?v=FHDwRECFL8M$(tput sgr0)*\n";
 
-echo "...aaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnd were $(tput setaf 148)done!$(tput sgr0)\n";
+	source install/symlink.sh;
 
-echo "Now GO! On to more important things...\n";
+	echo "\n...aaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnd were $(tput setaf 148)done!$(tput sgr0)\n";
+
+	echo "Now GO! There are important things to be done...\n";
+
+else
+
+	echo "\nSmell ya later!"
+
+fi
