@@ -66,6 +66,18 @@ function install_xcode_cli_tools() {
 
 }
 
+
+# Setup Bash 4.x
+# https://github.com/paulirish/dotfiles/blob/master/setup-a-new-machine.sh#L167
+
+function setup_bash() {
+  # Update to Bash 4.x (installed by Homebrew)
+  BASHPATH=$(brew --prefix)/bin/bash
+  sudo echo $BASHPATH >> /etc/shells
+  chsh -s $BASHPATH # will set for current user only.
+  echo $BASH_VERSION # should be 4.x not the old 3.2.X
+}
+
 # Run setup
 
 echo "   _____     __         ______     __  __     ______        ______     ______     ______ "
@@ -89,3 +101,9 @@ source install/brew.sh
 echo -e "Entering the Node...\n";
 
 source install/node.sh
+
+echo -e "Adding that 'new new', bash 4...";
+
+setup_bash();
+
+echo
