@@ -50,3 +50,5 @@ brew install homebrew/php/wp-cli
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+echo -e "Done brewing! On to the next one...\n";
