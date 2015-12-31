@@ -19,14 +19,14 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 # Git auto-completion
-source ~/.gitbash/git-completion.bash
+# source ~/.gitbash/git-completion.bash
 
 # WordPress auto-completion
-source $HOME/.wp-cli/wp-completion.bash
+# source $HOME/.wp-cli/wp-completion.bash
 
 # Node / NVM
-export NVM_DIR="/Users/Zion/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR=$HOME/.nvm
+[ -s "$(brew --prefix nvm)/nvm.sh" ] && source $(brew --prefix nvm)/nvm.sh
 
 # Ruby / RVM
 export PATH="$PATH:$HOME/.rvm/bin"
