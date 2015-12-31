@@ -20,9 +20,10 @@ brew upgrade --all
 echo "Install GNU core utilities (those that come with OS X are outdated).\n";
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
+[ -e "/usr/local/bin/sha256sum" ] && rm -rf /usr/local/bin/sha256sum
 sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
-echo "Install GNU `sed`, overwriting the built-in `sed`.\n";
+echo "Install GNU sed, overwriting the built-in sed.\n";
 brew install gnu-sed --with-default-names
 
 echo "Install Bash 4.\n";
