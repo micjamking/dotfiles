@@ -4,6 +4,7 @@
 
 # Paths
 export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/Applications/Android/SDK/platform-tools:$PATH

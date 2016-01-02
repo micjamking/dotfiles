@@ -4,7 +4,7 @@
 # thus it being first in line.
 # ------------------------------------------- #
 
-for file in ~/.{env,bash/.[^.]*,.projects}; do
+for file in ~/.{env,bash/.[^.]*,projects}; do
 
   # filename=$(tput setaf 81)$(basename $file)$(tput sgr0)
       
