@@ -48,6 +48,7 @@ alias edit_projects='vim ~/.projects'
 alias edit_prompt='vim ~/.bash/.prompt'
 alias edit_profile='vim ~/.bash_profile'
 alias reload_profile='source ~/.bash_profile'
+alias dotfiles='cd ~/.dotfiles/ && git status'
 
 # Watch Errors
 alias watch_errors='tail -f error.log'
