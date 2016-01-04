@@ -32,8 +32,11 @@ brew install bash
 
 echo "Install Homebrew versions.\n";
 brew tap homebrew/versions
-brew install bash-completion2
 
+echo "Install autocompletion.\n";
+brew install bash-completion
+brew tap homebrew/completions
+brew install wpcli-completion
 
 echo "Install more recent versions of some OS X tools.\n";
 brew install vim --override-system-vi
