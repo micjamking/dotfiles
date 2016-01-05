@@ -6,6 +6,7 @@ source $(brew --prefix nvm)/nvm.sh
 echo "Install latest version of node.js...\n";
 nvm install stable
 nvm alias default stable
+nvm use default
 
 echo "Install npm packages...\n";
 npm install -g bower
