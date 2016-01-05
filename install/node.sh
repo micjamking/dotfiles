@@ -1,15 +1,13 @@
 #!/bin/bash
 
-# Install latest version of node.js via npm and npm packages
-
-# Reload nvm into current environment
+echo "Reload nvm into current environment...\n";
 source $(brew --prefix nvm)/nvm.sh
 
-# Install latest version of node.js
+echo "Install latest version of node.js...\n";
 nvm install stable
 nvm alias default stable
 
-# Install npm packages
+echo "Install npm packages...\n";
 npm install -g bower
 npm install -g doctoc
 npm install -g grunt-cli
@@ -22,4 +20,4 @@ npm install -g npm-check-updates
 npm install -g postcss
 npm install -g yo
 
-echo -e "NPM package installation complete. Exiting the Node...\n";
+echo "NPM package installation complete. Exiting the Node...\n";
