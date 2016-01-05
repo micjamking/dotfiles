@@ -62,6 +62,22 @@ function install_xcode_cli_tools() {
 
 }
 
+# Setup MySQL
+# http://stackoverflow.com/a/6378429
+
+function setup_mysql() {
+
+  # Unset TMPDIR environment variable
+  unset TMPDIR
+  
+  # Initialize database
+  mysqld -initialize --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp 
+  
+  # Auto start mysql on login
+  ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+
+}
+
 # Setup Bash 4.x
 # https://github.com/paulirish/dotfiles/blob/master/setup-a-new-machine.sh#L167
 
@@ -115,6 +131,10 @@ if sudo -v ; then
 	echo "\nEntering the $(tput setaf 148)Node$(tput sgr0)...\n";
 
 	source install/node.sh;
+
+  echo "\nSetting up MySQL...\n";
+
+  setup_mysql;
 
 	echo "\n'I found you, Miss New Booty', $(tput setaf 162)Bash 4$(tput sgr0)...\n";
 
