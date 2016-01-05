@@ -53,6 +53,7 @@ brew install mongodb
 brew install postgresql
 brew install mysql
 brew install nvm
+brew install trash
 brew install tree
 brew install homebrew/php/wp-cli
 
