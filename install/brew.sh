@@ -27,7 +27,6 @@ echo "Install GNU sed, overwriting the built-in sed.\n";
 brew install gnu-sed --with-default-names
 
 echo "Install Bash 4.\n";
-# Note: add `/usr/local/bin/bash` to `/etc/shells` before running `chsh`.
 brew install bash
 
 echo "Install Homebrew versions.\n";

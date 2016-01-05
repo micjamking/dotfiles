@@ -99,4 +99,4 @@ echo "\n$(tput setaf 209)Linking Apache configuration...$(tput sgr0)\n";
 symlink "apache/httpd.conf" "/etc/apache2/extra/" "true"
 
 echo "\n$(tput setaf 209)Linking PHP configuration...$(tput sgr0)\n";
-symlink "php/php.ini" "/private/etc/" "true"
+symlink "php/php.ini" "/etc/" "true"
