@@ -19,12 +19,6 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
 
-# Git auto-completion
-# source ~/.gitbash/git-completion.bash
-
-# WordPress auto-completion
-# source $HOME/.wp-cli/wp-completion.bash
-
 # Node / NVM
 export NVM_DIR=$HOME/.nvm
 [ -s "$(brew --prefix nvm)/nvm.sh" ] && source $(brew --prefix nvm)/nvm.sh
