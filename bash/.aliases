@@ -26,8 +26,8 @@ alias find_ip='ifcongig | grep "inet " | grep -v 127.0.0.1'
 # ---------------------------------------------- #
 
 # MySQL
-alias mysqlstart='sudo mysql.server start'
-alias mysqlstop='sudo mysql.server stop'
+alias mysqlstart='mysql.server start'
+alias mysqlstop='mysql.server stop'
 
 # PostGRES
 alias pgstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
