@@ -9,7 +9,7 @@ alias aprestart='sudo apachectl restart'
 alias aperror='sudo vim /var/log/apache2/error_log'
 
 # PHP
-alias edit_php='sudo vim /private/etc/php.ini'
+alias edit_php='sudo vim /etc/php.ini'
 
 # Virtual Hosts
 alias edit_hosts='sudo vim /etc/hosts'
