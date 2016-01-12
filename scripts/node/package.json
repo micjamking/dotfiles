@@ -1,10 +1,11 @@
 {
-  "name": "bin > node scripts",
+  "name": "node-scripts",
   "version": "1.0.0",
-  "description": "bin > node scripts",
+  "description": "node scripts",
   "author": "Mike King",
   "private": true,
   "dependencies": {
-    "color2xterm": "^1.0.0"
+    "color2xterm": "^1.0.0",
+    "xlsx-to-json": "^0.2.4"
   }
 }

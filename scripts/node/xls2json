@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+/**
+ * Get file conversion library
+ */ 
+var x2j  = require('xlsx-to-json');
+
+/** 
+ * Get command-line arguments
+ */
+var args = process.argv.slice( 2 ).map( function( item ) {
+  
+  return item;
+
+});
+
+/**
+ * Convert xls to json
+ */
+var convertData = function( options ) {
+
+  x2j({
+    input: options[0],
+    output: options[1],
+    sheet: options[2]
+  }, function(err, result){
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+    }
+  });
+}
+
+/** Run everything!  */
+convertData(args);
