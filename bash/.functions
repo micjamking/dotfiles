@@ -122,3 +122,16 @@ function kill_port() {
   kill -9 $( lsof -i:"$1" -t )
 
 }
+
+
+# -------------------------------------------------------- # 
+# tar.gz archiving
+# @param {string} $1 - folder to compress
+# @example - $ tarzip ~/path/to/folder
+# -------------------------------------------------------- # 
+
+function tarzip() {
+  
+  tar -zcvf archive.tar.gz "$1"
+
+}
