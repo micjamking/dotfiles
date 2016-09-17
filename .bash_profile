@@ -17,3 +17,6 @@ done
 # echo "$(tput setaf 148)Done!$(tput sgr0)"
 
 unset file
+
+# Added by Grow SDK Installer (2016-06-29 22:27:14.465292)
+alias grow="/Users/Mike/bin/grow"

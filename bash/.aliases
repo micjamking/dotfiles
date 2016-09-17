@@ -19,7 +19,7 @@ alias edit_httpd='cd /etc/apache2 && sudo vim httpd.conf'
 # Network Ports
 alias listen_port80='lsof -i tcp:80'
 alias kill_port80='kill -9 $( lsof -i:80 -t )'
-alias find_ip='ifcongig | grep "inet " | grep -v 127.0.0.1'
+alias find_ip='ipconfig getifaddr en1'
 
 # ---------------------------------------------- #
 # Databases
