@@ -69,10 +69,10 @@ function setup_mysql() {
 
   # Unset TMPDIR environment variable
   unset TMPDIR
-  
+
   # Initialize database
-  mysqld -initialize --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp 
-  
+  mysqld -initialize --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+
   # Auto start mysql on login
   ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
 
@@ -82,10 +82,10 @@ function setup_mysql() {
 
   # Install phpMyAdmin
   # mkdir ~/Sites
-  # cd ~/Sites && curl -O https://files.phpmyadmin.net/phpMyAdmin/4.5.3.1/phpMyAdmin-4.5.3.1-english.zip
-  # unzip phpMyAdmin-4.5.3.1-english.zip
-  # mv phpMyAdmin-4.5.3.1-english phpmyadmin
-  # rm -rf phpMyAdmin-4.5.3.1-english.zip
+  # cd ~/Sites && curl -O https://files.phpmyadmin.net/phpMyAdmin/4.6.5.2/phpMyAdmin-4.6.5.2-english.zip
+  # unzip phpMyAdmin-4.6.5.2-english.zip
+  # mv phpMyAdmin-4.6.5.2-english phpmyadmin
+  # rm -rf phpMyAdmin-4.6.5.2-english.zip
   # ln -s ~/.dotfiles/php/config.inc.php ~/Sites/phpmyadmin/config.inc.php
   # sudo chmod -R a+w ~/Applications/
 }
@@ -94,18 +94,18 @@ function setup_mysql() {
 # https://github.com/paulirish/dotfiles/blob/master/setup-a-new-machine.sh#L167
 
 function setup_bash() {
-  
+
   # Update to Bash 4.x (installed by Homebrew)
   BASHPATH="$(brew --prefix)/bin/bash"
-  
+
   # Add brew's bash to list of shells
   if [ $(cat /private/etc/shells | grep $BASHPATH | wc -l) -eq 0 ]; then
     sudo bash -c 'echo $BASHPATH >> /private/etc/shells'
   fi
-  
+
   # Set for current user
   chsh -s $BASHPATH
-  
+
   echo "\nBash it up! Remember to quit terminal and relaunch after everythings all pau.\n";
 }
 
