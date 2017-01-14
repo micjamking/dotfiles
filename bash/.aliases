@@ -7,6 +7,7 @@ alias apstart='sudo apachectl start'
 alias apstop='sudo apachectl -k stop'
 alias aprestart='sudo apachectl restart'
 alias aperror='sudo vim /var/log/apache2/error_log'
+alias apconfig='sudo apachectl configtest'
 
 # PHP
 #alias edit_php='sudo vim /etc/php.ini'
