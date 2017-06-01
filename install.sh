@@ -81,13 +81,13 @@ function setup_mysql() {
   sudo ln -s /tmp/mysql.sock /var/mysql/mysql.sock
 
   # Install phpMyAdmin
-  # mkdir ~/Sites
-  # cd ~/Sites && curl -O https://files.phpmyadmin.net/phpMyAdmin/4.6.5.2/phpMyAdmin-4.6.5.2-english.zip
-  # unzip phpMyAdmin-4.6.5.2-english.zip
-  # mv phpMyAdmin-4.6.5.2-english phpmyadmin
-  # rm -rf phpMyAdmin-4.6.5.2-english.zip
-  # ln -s ~/.dotfiles/php/config.inc.php ~/Sites/phpmyadmin/config.inc.php
-  # sudo chmod -R a+w ~/Applications/
+  mkdir ~/Sites
+  cd ~/Sites && curl -O https://files.phpmyadmin.net/phpMyAdmin/4.6.5.2/phpMyAdmin-4.6.5.2-english.zip
+  unzip phpMyAdmin-4.6.5.2-english.zip
+  mv phpMyAdmin-4.6.5.2-english phpmyadmin
+  rm -rf phpMyAdmin-4.6.5.2-english.zip
+  ln -s ~/.dotfiles/php/config.inc.php ~/Sites/phpmyadmin/config.inc.php
+  sudo chmod -R a+w ~/Applications/
 }
 
 # Setup Bash 4.x

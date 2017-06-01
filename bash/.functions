@@ -135,3 +135,14 @@ function tarzip() {
   tar -zcvf archive.tar.gz "$1"
 
 }
+
+# -------------------------------------------------------- #
+# creates random 20-character secret tokens
+# @example - $ createToken()
+# -------------------------------------------------------- #
+
+function createToken() {
+
+ ruby -rsecurerandom -e 'puts SecureRandom.hex(20)'
+
+}
