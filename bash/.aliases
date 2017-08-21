@@ -23,6 +23,11 @@ alias listen_port80='lsof -i tcp:80'
 alias kill_port80='kill -9 $( lsof -i:80 -t )'
 alias find_ip='ifcongig | grep "inet " | grep -v 127.0.0.1'
 
+
+#IP addresses
+alias mac-ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias mac-localip="ipconfig getifaddr en0"
+alias mac-ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 # ---------------------------------------------- #
 # Databases
 # ---------------------------------------------- #
