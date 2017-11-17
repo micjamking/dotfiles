@@ -1,0 +1,87 @@
+# ---------------------------------------------- #
+# Local Server
+# ---------------------------------------------- #
+
+# Apache
+alias apstart='sudo apachectl start'
+alias apstop='sudo apachectl -k stop'
+alias aprestart='sudo apachectl restart'
+alias aperror='sudo vim /var/log/apache2/error_log'
+alias apconfig='sudo apachectl configtest'
+
+# PHP
+#alias edit_php='sudo vim /etc/php.ini'
+alias edit_php='sudo vim /usr/local/etc/php/7.0/php.ini'
+
+# Virtual Hosts
+alias edit_hosts='sudo vim /etc/hosts'
+alias edit_vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
+alias edit_httpd='cd /etc/apache2 && sudo vim httpd.conf'
+
+# Network Ports
+alias listen_port80='lsof -i tcp:80'
+alias kill_port80='kill -9 $( lsof -i:80 -t )'
+alias find_ip='ifcongig | grep "inet " | grep -v 127.0.0.1'
+
+
+#IP addresses
+alias mac-ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias mac-localip="ipconfig getifaddr en0"
+alias mac-ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+# ---------------------------------------------- #
+# Databases
+# ---------------------------------------------- #
+
+# MySQL
+alias mysqlstart='mysql.server start'
+alias mysqlstop='mysql.server stop'
+
+# PostGRES
+alias pgstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias pgstop='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop'
+
+# MongoDB
+alias mongoconfig='sudo vim /usr/local/etc/mongod.conf'
+
+# ---------------------------------------------- #
+# General Shortcuts
+# ---------------------------------------------- #
+
+# Bash Profile
+alias edit_aliases='vim ~/.bash/.aliases'
+alias edit_exports='vim ~/.bash/.exports'
+alias edit_functions='vim ~/.bash/.functions'
+alias edit_projects='vim ~/.projects'
+alias edit_prompt='vim ~/.bash/.prompt'
+alias edit_profile='vim ~/.bash_profile'
+alias reload_profile='source ~/.bash_profile'
+alias dotfiles='cd ~/.dotfiles/ && git status'
+
+# Watch Errors
+alias watch_errors='tail -f error.log'
+
+# Preview Markdown files
+alias view_md='markdown-preview README.md'
+
+# Calculator
+alias calc='bc -l'
+
+# Sass
+# alias sassify='node-sass -w --output-style expanded --source-map true styles/*.scss --output styles/'
+alias sassify='node-sass -w --output-style expanded --source-map true styles/ --output styles/'
+
+# Serato
+alias serato_clean="rm /Users/Zion/Library/Preferences/com.serato.scratchlive.plist && /Users/Zion/Library/Preferences/com.serato.dj.plist"
+
+# General
+alias show="ls -al"
+alias show_symlink="find ./ -maxdepth 1 -type l -ls"
+alias show_tree="tree -aL 4 -I '.git|node_modules|.Trash|.cache'"
+alias print_tree="show_tree > ~/Desktop/${FILENAME#.}.`date +%Y%m%d`.txt && open ~/Desktop/${FILENAME#.}.`date +%Y%m%d`.txt"
+alias npm_la="npm ls --depth 0 -g"
+alias clean="rm -rf ..?* .[!.]* *"
+alias git_clean="git clean  -d  -fx ''"
+alias git_clean_show="git clean -dfxn"
+
+# Added by Grow SDK Installer (2016-06-06 11:00:52.895604)
+alias grow='/Users/Mike/bin/grow'

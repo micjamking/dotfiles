@@ -1,0 +1,148 @@
+# ---------------------------------------------- #
+# Functions
+# ---------------------------------------------- #
+
+# -------------------------------------------------------- # 
+# Copy public SSH key to remote server
+# @param {string} $@ - ssh username@hostname to login
+# -------------------------------------------------------- # 
+
+function addKeyToRemote() {
+  
+  cat ~/.ssh/id_rsa.pub | ssh "$@" "cat >> .ssh/authorized_keys"
+
+}
+
+# -------------------------------------------------------- # 
+# Make file executable
+# @param {string} $@ - filename/path
+# -------------------------------------------------------- # 
+
+function makeExecutable() {
+
+  chmod u+x "$@"
+
+}
+
+# -------------------------------------------------------- # 
+# symlink source > target
+# @param {string} source - original file to create link of
+# @param {string} target - target symlink to be created
+# -------------------------------------------------------- # 
+
+function symlink(){
+
+  source="$1"
+
+  target="$2"
+
+  targetFile="$(basename $target)"
+
+  echo -e "Symlinking $source → $target...\n";
+
+  if [ -h "$target" ] ; then
+      
+    sudo ln -sFi "$source" "$target";
+
+  elif [ -e "$target" ] && [ ! -d "$target" ] ; then
+
+    echo "'$targetFile' already exists, do you want to overwrite it? (y/n)";
+      
+    read -n 1;
+
+    echo -e "\n";
+
+    if [[ "$REPLY" =~ ^[Yy]$ ]] ; then
+      
+      sudo rm -rf "$target"
+
+      sudo ln -sF "$source" "$target";
+
+    else
+
+        return 1;
+
+      fi
+    
+  else
+ 
+    sudo ln -s "$source" "$target";
+
+  fi
+
+  [ "$?" != 1 ] && echo -e "Symlink succesfully created!\n" && ls -al $( find "$target" -maxdepth 1 -type l -print )
+
+}
+
+# -------------------------------------------------------- # 
+# sync source > target on cloud
+# @param {string} source - original file to move to cloud
+# @param {string} target - target cloud directory location
+# -------------------------------------------------------- # 
+
+function syncToCloud() {
+  
+  source="$1"
+
+  file="$(basename $source)"
+
+  cloud_directory="${2:-$HOME/Google Drive/}"
+
+  cloud_file="$cloud_directory$file"
+  
+  echo -e "Moving $file to $cloud_directory...\n";
+  
+  if sudo mv "$source" "$cloud_directory" ; then 
+  
+    symlink "$cloud_file" "$source"
+
+  fi
+}
+
+# -------------------------------------------------------- # 
+# Set WordPress permissions for localhost installations
+# @param {string} $1 - directory to apply permission settings
+# @example - $ wp_permissions wordpress/
+# -------------------------------------------------------- # 
+
+function wp_permissions() {
+
+    sudo chown -R _www:_www "$1" && sudo chmod -R g+w "$1"
+
+}
+
+# -------------------------------------------------------- # 
+# Kill port
+# @param {string} $1 - port number (ie. 9000)
+# @example - $ kill_port 9000
+# -------------------------------------------------------- # 
+
+function kill_port() {
+  
+  kill -9 $( lsof -i:"$1" -t )
+
+}
+
+
+# -------------------------------------------------------- # 
+# tar.gz archiving
+# @param {string} $1 - folder to compress
+# @example - $ tarzip ~/path/to/folder
+# -------------------------------------------------------- # 
+
+function tarzip() {
+  
+  tar -zcvf archive.tar.gz "$1"
+
+}
+
+# -------------------------------------------------------- #
+# creates random 20-character secret tokens
+# @example - $ createToken()
+# -------------------------------------------------------- #
+
+function createToken() {
+
+ ruby -rsecurerandom -e 'puts SecureRandom.hex(20)'
+
+}
