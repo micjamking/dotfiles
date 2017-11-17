@@ -6,15 +6,15 @@
 
 for file in ~/.{env,bash/.[^.]*,projects}; do
 
-  # filename=$(tput setaf 81)$(basename $file)$(tput sgr0)
+  filename=$(tput setaf 81)$(basename $file)$(tput sgr0)
       
   [ -r "$file" ] && source "$file"
   
-  # echo -e "$filename loaded.";
+  echo -e "$filename loaded.";
 
 done
 
-# echo "$(tput setaf 148)Done!$(tput sgr0)"
+echo "$(tput setaf 148)Done!$(tput sgr0)"
 
 unset file
 
