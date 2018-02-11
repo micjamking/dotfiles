@@ -66,4 +66,6 @@
 	newHighlight = "green bold 22"
 [user]
 	name = Mike King
-	email = yo@mikeking.io
+	email = hello@mikeking.io
+[http]
+	cookiefile = /Users/zion/.gitcookies
