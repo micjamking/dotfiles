@@ -85,3 +85,9 @@ alias git_clean_show="git clean -dfxn"
 
 # Added by Grow SDK Installer (2016-06-06 11:00:52.895604)
 alias grow='/Users/Mike/bin/grow'
+
+
+# ---------------------------------------------- #
+# SSH
+# ---------------------------------------------- #
+alias ssh_google="gcert && ssh dubs.c.googlers.com"

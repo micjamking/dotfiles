@@ -10,11 +10,11 @@ for file in ~/.{env,bash/.[^.]*,projects}; do
       
   [ -r "$file" ] && source "$file"
   
-  echo -e "$filename loaded.";
+#  echo -e "$filename loaded.";
 
 done
 
-echo "$(tput setaf 148)Done!$(tput sgr0)"
+# echo "$(tput setaf 148)Done!$(tput sgr0)"
 
 unset file
 

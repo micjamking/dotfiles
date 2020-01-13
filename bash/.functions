@@ -118,8 +118,14 @@ function wp_permissions() {
 # -------------------------------------------------------- # 
 
 function kill_port() {
-  
-  kill -9 $( lsof -i:"$1" -t )
+
+  set -e
+
+  if [ -z "$1" ]; then
+    echo "usage: kill_port <port>"
+  else
+    kill -9 $( lsof -i:"$1" -t )
+  fi
 
 }
 
@@ -145,4 +151,14 @@ function createToken() {
 
  ruby -rsecurerandom -e 'puts SecureRandom.hex(20)'
 
+}
+
+# -------------------------------------------------------- #
+# base64 encodes a file
+# @param {string} $1 - file to encode
+# @example - $ b64() ~/path/to/file
+# -------------------------------------------------------- #
+b64() {
+  cat $1 | openssl base64 | awk 'BEGIN{ORS="";} {print}'
+  echo
 }

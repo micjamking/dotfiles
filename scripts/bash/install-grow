@@ -9,9 +9,14 @@ fi
 
 GROW_VERSION=$1
 
+if [ ! -f $HOME/bin/gr ]; then
+  mkdir -p $HOME/bin/gr 
+fi
+
 if [ ! -f $HOME/bin/gr/grow-$GROW_VERSION ]; then
   cd $HOME/bin/gr
-  wget https://github.com/grow/grow/releases/download/$GROW_VERSION/Grow-SDK-Mac-$GROW_VERSION.zip
+  wget --no-check-certificate http://github.com/grow/grow/releases/download/$GROW_VERSION/Grow-SDK-Mac-$GROW_VERSION.zip
+  # curl https://github.com/grow/grow/releases/download/$GROW_VERSION/Grow-SDK-Mac-$GROW_VERSION.zip
   unzip Grow-SDK-Mac-$GROW_VERSION.zip
   mv grow grow-$GROW_VERSION
 fi

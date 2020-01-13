@@ -34,7 +34,7 @@
 
 [core]
 	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
+	attributesfile = ~/.gitattributes 
 	# insanely beautiful diffs
   # pager = diff-highlight | diff-so-fancy | less -r
 
@@ -69,3 +69,7 @@
 	email = kingmi@google.com
 [http]
 	cookiefile = /Users/kingmi/.gitcookies
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
