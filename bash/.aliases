@@ -90,4 +90,4 @@ alias grow='/Users/Mike/bin/grow'
 # ---------------------------------------------- #
 # SSH
 # ---------------------------------------------- #
-alias ssh_google="gcert && ssh dubs.c.googlers.com"
+alias ssh_google="gcert --noloas2 && ssh dubs.c.googlers.com"

@@ -1,0 +1,144 @@
+#!/bin/bash
+
+#
+# Given a mp4 or mov file does the following:
+# - Converts to use the H.264 codec (if not, can cause problems on IE)
+# - Scales it down by 50 pixel increments and saves a video with the name [video-name]-[width].mp4
+# - create a webm version for each size.
+# - create a poster image for each size from the first frame of the video.
+#
+# Image variations are dumped to the same directory as where the original file is.
+#
+# Requirements: ffmpeg with libvpx for webm support
+# See https://trac.ffmpeg.org/wiki/CompilationGuide/macOS
+# `brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-libass --with-libquvi --with-libvorbis --with-libvpx --with-opus --with-x265 --with-webp`
+# If you already have it, change brew install to brew reinstall above.
+#
+# However, if you are stil having problems
+# See https://gist.github.com/clayton/6196167 for more.
+#
+# `brew uninstall --force ffmpeg`
+# `brew prune`
+# `brew install libvpx`
+# `brew install ffmpeg --env=std --with-lame --with-fdk-aac --with-ffplay --with-freetype --with-libass --with-libquvi --with-libvorbis --with-libvpx --with-opus --with-x265 --with-webp`
+#
+# What finally worked for me was to remove 8.3 and 9 xCode versions and
+# reinstall xcode.
+# The issue was related to: https://github.com/Homebrew/brew/issues/2835
+# Ensure my xcode path is up to date with `sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer/`
+#
+# Run with:
+# `./create-video-vartions.sh  ~/Desktop/my-video.mp4`
+#
+# Or to recursively run against a directory do:
+# `./create-video-vartions.sh  ~/Desktop/mydirectory`
+#
+#
+# Limitations:
+# - Original source file should be a mp4 file or mov file.
+
+# Takes a single mov or mp4 video and create variations.
+run() {
+  echo '\n'
+  echo '******************'
+  echo "Converting $1"
+  # Check if this is an mov file.  If so, initially generate a mp4 version to work off of.
+  if [[ $1 == *.mov ]]; then
+    file_path=${1/.mov/-converted.mp4}
+    echo 'converting mov to mp4'
+    < /dev/null ffmpeg -i $1 -an -loglevel panic -vcodec copy -acodec copy $file_path
+  else
+    file_path=$1
+  fi
+
+  # Acquire the dimensions of the video.
+  eval $(ffprobe -v error -of flat=s=_ -select_streams v:0 -show_entries stream=height,width $file_path)
+  w=${streams_stream_0_width}
+  h=${streams_stream_0_height}
+
+  # Round to the nearest 100.
+  let "width = ($w + 99) / 100 * 100 | bc";
+
+  # Loop through and create each video at size until reach 300.
+  while [ $width -gt 299 ]
+  do
+    ext=-$width.mp4
+    name=${file_path/.mp4/$ext}
+    webmname=${name/.mp4/.webm}
+    postername=${name/.mp4/.jpg}
+    # let "scaledHeight = $width*$h/$w"
+    # roundedScaledHeight=$(printf "%.2f" $scaledHeight)
+
+    # Create the mp4 variation at size.
+    # https://stackoverflow.com/questions/20847674/ffmpeg-libx264-height-not-divisible-by-2
+    < /dev/null ffmpeg -i $file_path -loglevel panic -hide_banner -movflags faststart -vcodec libx264 -pix_fmt yuv420p -acodec aac -filter:v scale=$width:-2 -an $name
+
+    echo 'Generated' $name
+
+    # Create the webm version
+    if echo "$answer" | grep -iq "^y" ;then
+      < /dev/null ffmpeg -i $name -f webm -loglevel panic -vcodec libvpx -acodec libvorbis -aq 90 -ac 2 $webmname
+      #ffmpeg -i $name -preset ultrafast $webmname
+      echo 'Generated' $webmname
+    fi
+
+    # Create the poster image for this size by taking the first frame of the video.
+    < /dev/null ffmpeg -i $name -loglevel panic -vf "select=eq(n\,0)" -q:v 3 $postername
+    echo 'Generated' $postername
+
+    # Decrease by 50 pixel each time.
+    let "width = $width - 50 | bc";
+  done
+}
+
+
+
+if [ $# -eq 0 ]; then
+    echo "Please specify a mp4,mov video to convert or a directory to search in."
+    exit 1
+fi
+
+echo "Would you like to generate webm versions as well?  Note it takes a looong time. (yes/no)"
+read answer
+
+
+# Recursively run if directory or just run once if isn't a directory.
+if [[ -d $1 ]]; then
+  echo "Would you like to do a searech for mp4 or mov files? Type mp4 or mov"
+  read answer2
+  if echo "$answer2" | grep -iq "^mp4" ;then
+    type="*.mp4"
+  elif echo "$answer2" | grep -iq "^mov" ;then
+    type="*.mov"
+  else
+    echo "Not a valid option"
+    exit 1
+  fi
+  find $1 -type f -name "${type}" -print0 | while IFS= read -r -d '' file; do
+    # Disable splitting.
+    IFS=''
+    run $file
+  done
+else
+  run $1
+fi
+
+
+# IE warning.
+echo '\n'
+echo '\n'
+echo '******************'
+echo '******************'
+echo '******************'
+echo 'All done! Please note the following:'
+echo '\n'
+echo 'IE has a max size restriction of 1920x1088.'
+echo 'Make sure to use a video less than the IE threshold'
+echo '@see https://lars.st0ne.at/blog/html5+video+in+IE11+-+size+does+matter'
+echo '\n'
+echo 'IMPORTANT: If your video was less than 1950, you need to specify that largest size that autowidth can use.  Example:'
+echo 'autowidth:'
+echo '  max: 1400'
+echo 'This will tell autowidth to use no larger than 1400px size video.'
+echo '\n'
+echo '\n'

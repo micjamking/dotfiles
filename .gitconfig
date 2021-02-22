@@ -30,7 +30,7 @@
 	reup = rebase-update
 
 [color]
-	ui = always
+	ui = auto
 
 [core]
 	excludesfile = ~/.gitignore
