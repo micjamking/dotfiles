@@ -49,13 +49,19 @@ brew install git
 brew install ffmpeg
 brew install heroku-toolbelt
 brew install imagemagick --with-webp
+brew install libyaml
 brew install mongodb
-brew install postgresql
 brew install mysql
+brew install pipenv
+brew install postgresql
+brew install protobuf@3.7
+brew install pyenv
 brew install nvm
+brew install rename
 brew install trash
 brew install tree
-brew install homebrew/php/wp-cli
+brew install wp-cli
+brew install yarn
 
 echo "Remove outdated versions from the cellar.\n";
 brew cleanup
