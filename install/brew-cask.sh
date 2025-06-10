@@ -12,7 +12,7 @@ brew tap homebrew/cask-versions
 # Browsers
 brew install firefox --cask
 brew install google-chrome --cask
-brew install google-chrome-canary --cask
+brew install google-chrome@canary --cask
 
 # Development
 brew install android-studio --cask
