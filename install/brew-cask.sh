@@ -6,9 +6,6 @@
 
 # Install native apps
 
-brew tap homebrew/cask
-brew tap homebrew/cask-versions
-
 # Browsers
 brew install firefox --cask
 brew install google-chrome --cask
